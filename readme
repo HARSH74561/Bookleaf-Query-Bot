@@ -1,13 +1,31 @@
-# 📚 BookLeaf Publishing - Customer Query Bot & Identity Unification
+# 📚 BookLeaf Publishing - AI Customer Query Bot & Identity Unification
 
-## Overview
-This project implements a multi-channel Customer Query Bot and a Multi-platform Identity Unification system for BookLeaf Publishing. It demonstrates expertise in modern AI integrations, fuzzy matching algorithms, and scalable backend architecture.
+<div align="center">
 
-The system helps BookLeaf efficiently respond to author queries using AI-powered retrieval-augmented generation (RAG) and unifies author identities across platforms like email, WhatsApp, and Instagram with high accuracy.
+![BookLeaf Logo](https://img.shields.io/badge/BookLeaf-Publishing-teal?style=for-the-badge)
+[![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-3.0-green?style=for-the-badge&logo=flask)](https://flask.palletsprojects.com/)
+[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--3.5-orange?style=for-the-badge&logo=openai)](https://openai.com/)
+[![License](https://img.shields.io/badge/License-Assignment-red?style=for-the-badge)](LICENSE)
+
+**🚀 Production-Ready Automation System for Multi-Channel Author Support**
+
+[Features](#-features) • [Installation](#-getting-started) • [API Docs](#-api-reference) • [Demo](#-demo-video)
+
+</div>
 
 ---
 
-## Features
+## 🌟 Overview
+
+This project implements a **multi-channel Customer Query Bot** and a **Multi-platform Identity Unification system** for BookLeaf Publishing. It demonstrates expertise in modern AI integrations, fuzzy matching algorithms, and scalable backend architecture.
+
+### 🎯 What It Does
+
+The system helps BookLeaf efficiently respond to author queries using **AI-powered retrieval-augmented generation (RAG)** and unifies author identities across platforms like email, WhatsApp, and Instagram with **95%+ accuracy**.
+
+<div align="center">
+
 
 ### Customer Query Bot
 - AI-powered responses using OpenAI GPT-3.5-turbo with fallback template system
