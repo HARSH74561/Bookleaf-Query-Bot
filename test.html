@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookLeaf Query Bot - Test Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #response {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            border-left-color: #28a745;
+        }
+        .error {
+            border-left-color: #dc3545;
+        }
+        .loading {
+            display: none;
+            margin-top: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 BookLeaf Query Bot - Test Interface</h1>
+        
+        <label for="identifier">Author Email or Name:</label>
+        <input type="text" id="identifier" placeholder="e.g., sara.johnson@xyz.com" value="sara.johnson@xyz.com">
+        
+        <label for="query">Your Question:</label>
+        <textarea id="query" placeholder="e.g., Is my book live yet?">Is my book live yet?</textarea>
+        
+        <label for="channel">Channel:</label>
+        <select id="channel">
+            <option value="Email">Email</option>
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="Instagram">Instagram DM</option>
+            <option value="API">API</option>
+        </select>
+        
+        <button onclick="sendQuery()">Send Query</button>
+        <div class="loading" id="loading">⏳ Processing your query...</div>
+        
+        <div id="response"></div>
+    </div>
+
+    <script>
+        async function sendQuery() {
+            const identifier = document.getElementById('identifier').value;
+            const query = document.getElementById('query').value;
+            const channel = document.getElementById('channel').value;
+            
+            const responseDiv = document.getElementById('response');
+            const loadingDiv = document.getElementById('loading');
+            
+            // Show loading
+            loadingDiv.style.display = 'block';
+            responseDiv.style.display = 'none';
+            
+            try {
+                const response = await fetch('http://127.0.0.1:5000/query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        query: query,
+                        identifier: identifier,
+                        channel: channel
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // Hide loading
+                loadingDiv.style.display = 'none';
+                
+                // Show response
+                responseDiv.style.display = 'block';
+                responseDiv.className = data.error ? 'error' : 'success';
+                
+                if (data.error) {
+                    responseDiv.innerHTML = `
+                        <h3>❌ Error</h3>
+                        <p>${data.error}</p>
+                    `;
+                } else {
+                    responseDiv.innerHTML = `
+                        <h3>✅ Response</h3>
+                        <p><strong>Bot Reply:</strong> ${data.response}</p>
+                        <hr>
+                        <p><strong>Confidence:</strong> ${(data.confidence * 100).toFixed(1)}%</p>
+                        <p><strong>Matched Author:</strong> ${data.matched_author || 'None'}</p>
+                        <p><strong>Query Type:</strong> ${data.query_type}</p>
+                        <p><strong>Escalated:</strong> ${data.escalated ? '⚠️ Yes' : '✅ No'}</p>
+                    `;
+                }
+            } catch (error) {
+                loadingDiv.style.display = 'none';
+                responseDiv.style.display = 'block';
+                responseDiv.className = 'error';
+                responseDiv.innerHTML = `
+                    <h3>❌ Connection Error</h3>
+                    <p>Could not connect to the server. Make sure the Flask app is running.</p>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

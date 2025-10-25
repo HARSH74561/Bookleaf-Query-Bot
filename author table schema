@@ -1,0 +1,21 @@
+-- Create authors table
+CREATE TABLE authors (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    email TEXT UNIQUE NOT NULL,
+    book_title TEXT NOT NULL,
+    final_submission_date DATE,
+    book_live_date DATE,
+    royalty_status TEXT,
+    isbn TEXT,
+    add_on_services TEXT[],
+    author_copies_sent BOOLEAN DEFAULT FALSE,
+    dashboard_access BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Insert sample data
+INSERT INTO authors (email, book_title, final_submission_date, book_live_date, royalty_status, isbn, add_on_services, author_copies_sent)
+VALUES 
+    ('sara.johnson@xyz.com', 'Echoes of Silence', '2024-09-15', '2024-10-20', 'processed', '978-93-12345-67-8', ARRAY['Bestseller Package', 'PR'], TRUE),
+    ('rajesh.kumar@email.com', 'The Digital Revolution', '2024-08-01', '2024-09-10', 'pending_october', '978-93-98765-43-2', ARRAY['Award Submission'], FALSE),
+    ('priya.sharma@gmail.com', 'Monsoon Memories', '2024-10-01', NULL, 'not_yet_live', '978-93-11111-22-3', ARRAY['Bestseller Package'], FALSE);
