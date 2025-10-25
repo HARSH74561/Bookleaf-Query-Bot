@@ -1,102 +1,88 @@
-📚 BookLeaf Publishing - AI Customer Query Bot & Identity Unification
-<div align="center">
-[
-[
-[
-[
+BookLeaf Publishing - AI Customer Query Bot & Identity Unification
 
-🚀 Production-Ready Automation System for Multi-Channel Author Support
-
-Features - Installation - API Docs - Demo
-
-</div>
-🌟 Overview
+Overview
+--------
 This project implements a multi-channel Customer Query Bot and a Multi-platform Identity Unification system for BookLeaf Publishing. It demonstrates expertise in modern AI integrations, fuzzy matching algorithms, and scalable backend architecture.
 
-🎯 What It Does
-The system helps BookLeaf efficiently respond to author queries using AI-powered retrieval-augmented generation (RAG) and unifies author identities across platforms like email, WhatsApp, and Instagram with 95%+ accuracy.
+The system helps BookLeaf efficiently respond to author queries using AI-powered retrieval-augmented generation (RAG) and unifies author identities across platforms like email, WhatsApp, and Instagram with high accuracy.
 
-<div align="center">
+Features
+--------
+
 Customer Query Bot
-AI-powered responses using OpenAI GPT-3.5-turbo with fallback template system
-
-Retrieval-Augmented Generation (RAG) leveraging a comprehensive BookLeaf knowledge base
-
-Multichannel input support: Email, WhatsApp, Instagram, API
-
-Confidence-based escalation: Auto-respond, manual review, or escalate to human agent
-
-SQLite query logging with detailed analytics
-
-Auto-launch browser interface for testing endpoints (test.html)
+- AI-powered responses using OpenAI GPT-3.5-turbo with fallback template system
+- Retrieval-Augmented Generation (RAG) leveraging a comprehensive BookLeaf knowledge base
+- Multichannel input support: Email, WhatsApp, Instagram, API
+- Confidence-based escalation: Auto-respond, manual review, or escalate to human agent
+- SQLite query logging with detailed analytics
+- Auto-launch browser interface for testing endpoints (test.html)
 
 Identity Unification
-Fuzzy matching for email, phone, name, and social handles
-
-Weighted scoring and normalization for robust identity confidence calculation
-
-Intelligent routing for auto-matching, manual review, or new profile creation
-
-Profile merging and alternative email tracking
-
-Comprehensive unification report for monitoring
+- Fuzzy matching for email, phone, name, and social handles
+- Weighted scoring and normalization for robust identity confidence calculation
+- Intelligent routing for auto-matching, manual review, or new profile creation
+- Profile merging and alternative email tracking
+- Comprehensive unification report for monitoring
 
 Technology Stack
-Component	Technology	Purpose
-Backend	Python 3.12, Flask	API server and business logic
-AI/ML	OpenAI GPT-3.5	Natural language understanding and generation
-Embeddings & RAG	OpenAI Embeddings, NumPy	Semantic contextual search
-Identity Matching	fuzzywuzzy, thefuzz	Fuzzy string matching for author profiles
-Database	SQLite, Supabase	Query logs and author data storage
-Web Interface	HTML/CSS/JS	Test interface (test.html)
+----------------
+
+Component           Technology             Purpose
+-----------------------------------------------------
+Backend             Python 3.12, Flask     API server and business logic
+AI/ML               OpenAI GPT-3.5         Natural language understanding and generation
+Embeddings & RAG    OpenAI Embeddings, NumPy Semantic contextual search
+Identity Matching   fuzzywuzzy, thefuzz    Fuzzy string matching for author profiles
+Database            SQLite, Supabase       Query logs and author data storage
+Web Interface       HTML/CSS/JS            Test interface (test.html)
+
 Getting Started
-Prerequisites
-Python 3.12+
+---------------
 
-Access to OpenAI API (for GPT and embeddings)
+Prerequisites:
+- Python 3.12+
+- Access to OpenAI API (for GPT and embeddings)
+- Optional Supabase project for author data (mock data used if not configured)
 
-Optional Supabase project for author data (mock data used if not configured)
-
-Installation
-bash
+Installation:
 git clone https://github.com/yourusername/bookleaf-query-bot.git
 cd bookleaf-query-bot
 pip install -r requirements.txt
-Configuration
-Create .env file in the project root:
 
-text
+Configuration:
+Create `.env` file in the project root:
 OPENAI_API_KEY=your_openai_api_key
 SUPABASE_URL=your_supabase_url (optional)
 SUPABASE_KEY=your_supabase_key (optional)
+
 Running the Bots
-Customer Query Bot
-bash
+----------------
+
+Customer Query Bot:
 python main.py
-Opens a browser window with the test interface at http://127.0.0.1:5000
 
-Supports POST /query and GET /logs endpoints
+- Opens a browser window with test interface at http://127.0.0.1:5000
+- Supports POST /query and GET /logs endpoints
 
-Identity Unification Demo
-bash
+Identity Unification Demo:
 python identity_unifier.py
-Runs sample identity matching tests with confidence and action outputs
+
+- Runs sample identity matching tests with confidence and action outputs
 
 API Reference
+-------------
+
 POST /query
 Submit a customer query to get responses.
 
-Request body:
-
-json
+Request body example:
 {
   "query": "When will I get my royalty?",
   "identifier": "sara.johnson@xyz.com",
   "channel": "Email"
 }
-Response:
 
-json
+Response example:
 {
   "response": "Your royalty payment has been processed...",
   "confidence": 0.90,
@@ -105,37 +91,58 @@ json
   "escalated": false,
   "timestamp": "2025-10-25T13:30:00"
 }
+
 GET /logs
 Fetch recent query logs.
 
 Usage Examples
-Query: "Is my book live yet?" → Provides book publication status if known
+--------------
 
-Query: "How do I get author copies?" → Returns shipping status and policy
-
-Query: "Where is my royalty payment?" → Gives payment processing details
-
-Query: Unknown user email → Escalates to human support
+- Query: "Is my book live yet?" → Provides book publication status if known
+- Query: "How do I get author copies?" → Returns shipping status and policy
+- Query: "Where is my royalty payment?" → Gives payment processing details
+- Query: Unknown user email → Escalates to human support
 
 Design Overview
+---------------
+
 Multi-channel Input → Query Classification → Author Matching → RAG Semantic Search → Response Generation → Confidence Routing → Logging
 
 Identity Unification:
-Normalize and score email, phone, name, social handles
-
-Aggregate weighted scores → Determine matching action
-
-Create, merge, or review profiles accordingly
+- Normalize and score email, phone, name, social handles
+- Aggregate weighted scores → Determine matching action
+- Create, merge, or review profiles accordingly
 
 Future Enhancements
-Vector DB (Pinecone/Weaviate) for scalable semantic search
+-------------------
 
-Fine-tuned GPT models on BookLeaf data
+- Vector DB (Pinecone/Weaviate) for scalable semantic search
+- Fine-tuned GPT models on BookLeaf data
+- Multilingual support including Hindi and regional languages
+- Voice-based query processing (Whisper API)
+- Analytics dashboard for query trends and escalation
+- Rate limiting and authentication for API security
 
-Multilingual support including Hindi and regional languages
+Contribution & Support
+----------------------
 
-Voice-based query processing (Whisper API)
+Feel free to contribute improvements or reach out for support.
 
-Analytics dashboard for query trends and escalation
+- Email: your.email@example.com  
+- GitHub: https://github.com/yourusername/bookleaf-query-bot  
+- Support tickets: https://bookleafpublishing.freshdesk.com/support/tickets/new
 
-Rate limiting and authentication for API security
+License
+-------
+
+This project is submitted as part of an assignment evaluation for BookLeaf Publishing. Rights retained by developer.
+
+Acknowledgements
+----------------
+
+- OpenAI for GPT and Embeddings APIs  
+- Supabase for backend database  
+- fuzzywuzzy and thefuzz for identity matching  
+- BookLeaf Publishing for the dataset and domain
+
+Thank you for reviewing this project!
