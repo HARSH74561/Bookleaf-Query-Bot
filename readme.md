@@ -144,8 +144,8 @@ Contribution & Support
 
 Feel free to contribute improvements or reach out for support.
 
-- Email: your.email@example.com  
-- GitHub: https://github.com/yourusername/bookleaf-query-bot  
+- Email: harshbisht7456@gmail.com  
+- GitHub: https://github.com/HARSH74561/bookleaf-query-bot  
 - Support tickets: https://bookleafpublishing.freshdesk.com/support/tickets/new
 
 License
